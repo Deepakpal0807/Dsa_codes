@@ -1,0 +1,118 @@
+// /*
+// 	Given N cartesian points in a 2D plane, count the number of right-angled triangles that
+// 	can be formed such that the base or perpendicular is parallel to the x-axis or y-axis.
+
+// 	Examples
+
+// 	Input : {(0, 0),
+// 	         (2, 0),
+// 	         (0, 1)}
+
+// 	Output: 1
+
+// 	Input : {(1, 2),
+// 			 (2, 0),
+// 			 (2, 2),
+// 			 (2, 3),
+// 			 (4, 2)}
+
+// 	Output: 4
+// */
+
+// #include<iostream>
+// #include<vector>
+// #include<unordered_map>
+
+// using namespace std;
+
+// class Point {
+// public:
+// 	int x;
+// 	int y;
+
+// 	Point(int x, int y) {
+// 		this->x = x;
+// 		this->y = y;
+// 	}
+// };
+
+// int main() {
+
+// 	vector<Point> points = {
+// 		Point(1, 2),
+// 		Point(2, 0),
+// 		Point(2, 2),
+// 		Point(2, 3),
+// 		Point(4, 2)
+// 	};
+
+// 	int count = 0;
+
+// 	// time : O(n^2) space : O(1)
+
+// 	for (Point pivot : points)  {
+
+// 		// compute the no. of axis parallel rightAngledTriangles around 'pivot'
+
+// 		int a = 0; // to store the #points in the 2D plane with same x-coordinate as 'pivot'
+// 		int b = 0; // to store the #points in the 2D plane with same y-coordinate as 'pivot'
+
+// 		for (Point p : points) {
+// 			if (p.x == pivot.x) {
+// 				a++;
+// 			}
+
+// 			if (p.y == pivot.y) {
+// 				b++;
+// 			}
+// 		}
+
+// 		count += (a - 1) * (b - 1);
+// 	}
+
+// 	cout << "count : " << count << endl;
+// }
+
+
+
+//using the frequency map
+#include<bits/stdc++.h>
+using namespace std;
+class point{
+public:
+	int x;
+	int y;
+	point(int x,int y){
+		this->x=x;
+		this->y=y;
+	}
+};
+int main(){
+    vector<point> v={
+    	point(1,2),
+    	point(2,1),
+    	point(2,2),
+    	point(2,3),
+    	point(3,2)
+    };
+    int ans=0;
+
+    //Time:O(N)
+    //space : O(n)
+
+    unordered_map<int,int> xfreq;
+    unordered_map<int,int> yfreq;
+    for(point p: v){
+    	xfreq[p.x]++;
+    	yfreq[p.y]++;
+    }
+
+    for(point p: v){
+    	int a= xfreq[p.x];
+    	int b=yfreq[p.y];
+
+    	 ans+=(a-1)*(b-1);
+
+    }
+    cout<<ans<<endl;
+}

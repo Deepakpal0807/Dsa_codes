@@ -21,6 +21,7 @@ int ministep(int a){
 	return 1+min(x,min(y,z));
 }
 
+
 int ministepTopDown(int a,vector<int>& dp){
       //base case..
 	if(a==1){
@@ -47,6 +48,9 @@ int ministepTopDown(int a,vector<int>& dp){
 
 	return dp[a]=1+min(x,min(y,z));
 }
+
+//time: O(n)
+//space: O(n) //due to dp vector..
 int ministepBottomUp(int a){
 	vector<int> dp(a+1);
 	dp[1]=0;//base case..
@@ -78,8 +82,8 @@ int ministepBottomUp(int a){
 }
 int main(){
 	int a=2;
-    // cout<<ministep(a)<<endl;
+    cout<<ministep(a)<<endl;
     vector<int> dp(a+1,-1);
-    // cout<<ministepTopDown(a,dp)<<endl;
+    cout<<ministepTopDown(a,dp)<<endl;
     cout<<ministepBottomUp(a)<<endl;
 }

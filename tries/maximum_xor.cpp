@@ -63,22 +63,56 @@ public:
 		return true;
 	}
 
+	int maximum(int n){
+		node* curr = root;
+		int XOR = 0;
+
+		for (int i = 31; i >= 0; i--) {
+
+			int ith_bit = (n >> i) & 1;
+
+			if (ith_bit == 0) {
+
+				if (curr->right != NULL) {
+					// ith bit of XOR can be set
+					XOR += (1 << i); // or pow(2, i)
+					curr = curr->right;
+				} else {
+					// ith bit of XOR cannot be set
+					curr = curr->left;
+				}
+
+			} else { // ith_bit == 1
+
+				if (curr->left != NULL) {
+					// ith bit of XOR can be set
+					XOR += (1 << i); // or pow(2, i)
+					curr = curr->left;
+				} else {
+					// ith bit of XOR cannot be set
+					curr = curr->right;
+				}
+			}
+
+		}
+
+		cout << n << "^" << (n ^ XOR) << " = " << XOR << endl;
+
+		return XOR;	}
+
 };
+
 int main(){
 	tries t;
-	int arr[]={1,2,5,6,7};
+	int arr[]={2,4,5,8,10};
 	int x=sizeof(arr)/sizeof(int);
 	for(int i=0;i<x;i++){
        t.insert(arr[i]);
 	}
-	int brr[]={1,2,3,4,5,6,7,8};
-	int y=sizeof(brr)/sizeof(int);
-	for(int i=0;i<y;i++){
-		
-	 t.search(brr[i])?cout<<brr[i]<<" is present "<<endl:
-	             cout<<brr[i]<<" is absent"<<endl;
+	int count=0;
+	for(int i=0;i<x;i++){
+           count=max(count,t.maximum(arr[i]));
 	}
-
-
+	cout<<endl<< count<<endl;;
 
 }

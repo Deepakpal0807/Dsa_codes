@@ -88,7 +88,8 @@ void solveBottomUp(int n,int k){
 	cout<<dp[n]<<endl;
 }
 
-
+//time: O(n)
+//space:O(n)
 int solveBottomUptimeoptimised(int n,int k){
 	vector<int> dp(n+1);
 	dp[0]=1;
@@ -103,6 +104,7 @@ int solveBottomUptimeoptimised(int n,int k){
 
 	cout<<dp[n]<<endl;
 }
+
 int main(){
 	int n=4;
 	// cin>>n;
@@ -114,5 +116,5 @@ solve(n,k,v);
 	vector<int>dp(n+1,-1);
 	cout<<solveTopDown(n,k,dp)<<endl;
 	solveBottomUp(n,k);
-	solveBottomUptimeoptimised(n,k);
+	solveBottomUptimeoptimised(n,k); 
 }
